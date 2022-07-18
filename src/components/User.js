@@ -29,7 +29,7 @@ const ItemText = styled.p`
     text-decoration: ${props => props.completed ? 'line-through' : 'none'}
 
 `
-const User = ({ users, toDo, setToDo, search }) => {
+const User = ({ users, toDo, setToDo, filter, search }) => {
 
     const toggleItem = (e) => {
         const id = e.target.id;
@@ -46,9 +46,23 @@ const User = ({ users, toDo, setToDo, search }) => {
         setToDo([...newToDos]);
     }
 
+    const filterItems = (user) => {
+        if(filter == "none"){
+            return true;
+        }else if(filter == "other"){
+            console.log("here")
+            return (!user.website.includes(".net") && (!user.website.includes(".com")));
+        }else{
+            return user.website.includes(filter);
+        }
+    }
+
   return (
     <div>
-        {users.filter(user => (user.name.includes(search) || user.email.includes(search))).map((user,key) => {
+        {users
+        .filter(user => filterItems(user))
+        .filter(user => (user.name.includes(search) || user.email.includes(search)))
+        .map((user,key) => {
         return (
           <div>
             <UserContainer key={key}>
