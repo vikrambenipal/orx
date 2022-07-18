@@ -8,7 +8,7 @@ const UserContainer = styled.div`
 const User = ({ users, search }) => {
   return (
     <div>
-        {users.filter(user => user.name.includes(search)).map(user => {
+        {users.filter(user => (user.name.includes(search) || user.email.includes(search))).map(user => {
         return (
           <UserContainer>
             <p>{user.name}</p>

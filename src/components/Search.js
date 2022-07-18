@@ -7,8 +7,6 @@ const SearchContainer = styled.div`
     margin-bottom: 30px;
 `
 
-
-
 const Search = ({ setSearch }) => {
 
     const handleChange = (e) => {
