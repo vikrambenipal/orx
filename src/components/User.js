@@ -61,7 +61,7 @@ const User = ({ users, toDo, setToDo, filter, search }) => {
     <div>
         {users
         .filter(user => filterItems(user))
-        .filter(user => (user.name.includes(search) || user.email.includes(search)))
+        .filter(user => user.name.toLowerCase().includes(search.toLowerCase()) || user.email.includes(search))
         .map((user,key) => {
         return (
           <div>
