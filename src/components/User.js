@@ -34,7 +34,7 @@ const User = ({ users, toDo, setToDo, filter, search }) => {
     const toggleItem = (e) => {
         const id = e.target.id;
         let newToDos = toDo;
-        const index = newToDos.findIndex(item => item.id == id);
+        const index = newToDos.findIndex(item => item.id === id);
         newToDos[index].completed = !newToDos[index].completed;
         setToDo([...newToDos]);
     }
@@ -42,14 +42,14 @@ const User = ({ users, toDo, setToDo, filter, search }) => {
     const handleDelete = (e) => {
         const id = e.target.id;
         console.log(id)
-        const newToDos = toDo.filter(item => item.id != id);
+        const newToDos = toDo.filter(item => item.id !== id);
         setToDo([...newToDos]);
     }
 
     const filterItems = (user) => {
-        if(filter == "none"){
+        if(filter === "none"){
             return true;
-        }else if(filter == "other"){
+        }else if(filter === "other"){
             console.log("here")
             return (!user.website.includes(".net") && (!user.website.includes(".com")));
         }else{
@@ -73,7 +73,7 @@ const User = ({ users, toDo, setToDo, filter, search }) => {
                 <p>{user.website}</p>
                 <h3>To Do Items:</h3>
                 {toDo.map(item => (
-                    item.userId == user.id ? (
+                    item.userId === user.id ? (
                         <ToDoContainer>
                             <div>
                                 <ItemText completed={item.completed} id={item.id} onClick={toggleItem}>{item.title}</ItemText>
